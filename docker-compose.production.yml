@@ -11,19 +11,25 @@ services:
     env_file: .env
     volumes:
       - kitty_data:/var/lib/postgresql/data
+
   backend:
+    image: tawaluk/kittygram_backend
     build: ./backend/
     env_file: .env
     volumes:
       - static:/backend_static/
       - media:/app/media/
+
   frontend:
     env_file: .env
+    image: tawaluk/kittygram_frontend
     build: ./frontend/
     command: cp -r /app/build/. /staticfiles/
     volumes:
       - static:/staticfiles/
+
   gateway:
+    image: tawaluk/kittygram_gateway
     build: ./nginx/
     env_file: .env
     ports:
