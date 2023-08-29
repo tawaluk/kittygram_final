@@ -8,7 +8,7 @@ volumes:
 
 services:
   kittygram:
-    image: postgres:13
+    image: postgres:13.10
     env_file: .env
     volumes:
       - kitty_data:/var/lib/postgresql/data
