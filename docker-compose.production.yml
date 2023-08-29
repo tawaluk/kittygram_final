@@ -26,8 +26,7 @@ services:
     build: ./frontend/
     command: cp -r /app/build/. /staticfiles/
     volumes:
-      - static:/staticfiles/
-
+      - static:/backend_static/static/
   gateway:
     image: tawaluk/kittygram_gateway
     build: ./nginx/
@@ -35,5 +34,5 @@ services:
     ports:
       - 9000:80
     volumes:
-      - static:/app/static/
+      - static:/backend_static/static/
       - media:/app/media/
