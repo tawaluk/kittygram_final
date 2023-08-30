@@ -14,7 +14,6 @@ services:
       - kitty_data:/var/lib/postgresql/data
   backend:
     image: tawaluk/kittygram_backend
-    build: ./backend/
     env_file: .env
     volumes:
       - static:/app/backend_static/
@@ -22,13 +21,11 @@ services:
   frontend:
     image: tawaluk/kittygram_frontend
     env_file: .env
-    build: ./frontend/
     command: cp -r /app/build/. /staticfiles/
     volumes:
       - static:/staticfiles/
   gateway:
     image: tawaluk/kittygram_gateway
-    build: ./nginx/
     env_file: .env
     ports:
       - 9000:80
