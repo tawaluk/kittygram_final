@@ -5,13 +5,13 @@ volumes:
   static:
   media:
 
+
 services:
   kittygram:
     image: postgres:13.10
     env_file: .env
     volumes:
       - kitty_data:/var/lib/postgresql/data
-
   backend:
     image: tawaluk/kittygram_backend
     build: ./backend/
@@ -19,10 +19,9 @@ services:
     volumes:
       - static:/backend_static/
       - media:/app/media/
-
   frontend:
-    env_file: .env
     image: tawaluk/kittygram_frontend
+    env_file: .env
     build: ./frontend/
     command: cp -r /app/build/. /staticfiles/
     volumes:
@@ -35,4 +34,4 @@ services:
       - 9000:80
     volumes:
       - static:/app/static/
-      - media:/app/static/media/
+      - media:/app/media/
