@@ -17,16 +17,17 @@ services:
     build: ./backend/
     env_file: .env
     volumes:
-      - static:/backend_static/
+      - static:/static/
       - media:/app/media/
 
   frontend:
     env_file: .env
     image: tawaluk/kittygram_frontend
     build: ./frontend/
-    command: cp -r /app/build/. /frontend_static/
+    command: cp -r /app/build/. /static/
     volumes:
-      - static:/frontend_static/
+      - static:/static
+
   gateway:
     image: tawaluk/kittygram_gateway
     build: ./nginx/
@@ -34,5 +35,5 @@ services:
     ports:
       - 9000:80
     volumes:
-      - static:/backend_static/static/
+      - static:/static
       - media:/app/media/
